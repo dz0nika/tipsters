@@ -23,14 +23,14 @@ Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/admin/tipsters', [App\Http\Controllers\Api\TipsterController::class, 'index'])
+Route::get('/admin/tipsters', [App\Http\Controllers\Web\TipsterController::class, 'index'])
 	->name('tipsters.index');
 
-Route::get('/admin/tipsters/{id}', [App\Http\Controllers\Api\TipsterController::class, 'show'])
+Route::get('/admin/tipsters/{id}', [App\Http\Controllers\Web\TipsterController::class, 'show'])
 	->name('tipsters.show');
 
-Route::get('/admin/tips/{tipster:tipster_id}', [App\Http\Controllers\Api\TipController::class, 'show'])
+Route::get('/admin/tips/{tipster:tipster_id}', [App\Http\Controllers\Web\TipController::class, 'show'])
 	->name('tips.show');
 
-Route::get('/admin/stats/{tipster:tipster_id}', [App\Http\Controllers\Api\TipController::class, 'showStats'])
+Route::get('/admin/stats/{tipster:tipster_id}', [App\Http\Controllers\Web\TipController::class, 'showStats'])
 	->name('tips.showStats');

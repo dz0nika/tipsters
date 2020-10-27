@@ -12,7 +12,12 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/tipsters', [App\Http\Controllers\Api\TipsterController::class, 'index']);
+Route::get('/tips/{tipster:tipster_id}', [App\Http\Controllers\Api\TipController::class, 'show']);
+Route::get('/stats/{tipster:tipster_id}', [App\Http\Controllers\Api\TipController::class, 'showStats']);
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
    return $request->user();
@@ -22,14 +27,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
    $response = $client->request('GET', '/api/admin/tipsters');
 });
 
+
+/*
 Route::group(['middleware' => 'auth:api'], function(){
 	
 	Auth::routes();
-
-	Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-	Route::get('/admin/tipsters', [App\Http\Controllers\Api\TipsterController::class, 'index'])
-		->name('tipsters.index');
 
 	Route::get('/admin/tipsters/{id}', [App\Http\Controllers\Api\TipsterController::class, 'show'])
 		->name('tipsters.show');
@@ -40,3 +42,5 @@ Route::group(['middleware' => 'auth:api'], function(){
 	Route::get('/admin/stats/{tipster:tipster_id}', [App\Http\Controllers\Api\TipController::class, 'showStats'])
 		->name('tips.showStats');
  });
+
+ */

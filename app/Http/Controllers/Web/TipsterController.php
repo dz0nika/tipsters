@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Support\Facades\Hash; 
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ class TipsterController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -21,8 +21,7 @@ class TipsterController extends Controller
     public function index()
     {
         $tipsters = Tipster::all(); 
-        return $tipsters;
-        // return view('admin.tipsters.index', compact('tipsters'));
+        return view('admin.tipsters.index', compact('tipsters'));
     }
 
     /**
@@ -56,7 +55,7 @@ class TipsterController extends Controller
     {
     
         $tipsters = Tipster::findOrFail($id); 
-        return $tipsters;
+        return view('admin.tipsters.show', compact('tipsters'));
     }
 
     /**

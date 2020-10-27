@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Web;
 
 use Illuminate\Support\Facades\Hash; 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Tipster;
+use App\Models\Tip;
 
-class TipsterController extends Controller
+class TipController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -20,9 +20,8 @@ class TipsterController extends Controller
      */
     public function index()
     {
-        $tipsters = Tipster::all(); 
-        return $tipsters;
-        // return view('admin.tipsters.index', compact('tipsters'));
+        $tips = Tip::all(); 
+        return view('admin.tips.index', compact('tips'));
     }
 
     /**
@@ -52,11 +51,16 @@ class TipsterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($tipster_id)
     {
-    
-        $tipsters = Tipster::findOrFail($id); 
-        return $tipsters;
+        $tips = Tip::where('tipster_id', $tipster_id)->firstOrFail();  
+        return view('admin.tips.show', compact('tips'));
+    }
+
+    public function showStats($tipster_id)
+    {
+        $tips = Tip::where('tipster_id', $tipster_id)->firstOrFail();  
+        return view('admin.stats.show', compact('tips'));
     }
 
     /**

@@ -21,7 +21,7 @@ class TipController extends Controller
     public function index()
     {
         $tips = Tip::all(); 
-        return view('admin.tips.index', compact('tips'));
+        return $tips;
     }
 
     /**
@@ -54,13 +54,13 @@ class TipController extends Controller
     public function show($tipster_id)
     {
         $tips = Tip::where('tipster_id', $tipster_id)->firstOrFail();  
-        return view('admin.tips.show', compact('tips'));
+        return $tips;
     }
 
     public function showStats($tipster_id)
     {
         $tips = Tip::where('tipster_id', $tipster_id)->firstOrFail();  
-        return view('admin.stats.show', compact('tips'));
+        return $tips;
     }
 
     /**
