@@ -20,8 +20,8 @@ class TipsterController extends Controller
      */
     public function index()
     {
-        $tipsters = Tipster::all(); 
-        return $tipsters;
+        $tips = Tip::get()->toJson(JSON_PRETTY_PRINT); 
+        return response($tips);
         // return view('admin.tipsters.index', compact('tipsters'));
     }
 
@@ -55,8 +55,8 @@ class TipsterController extends Controller
     public function show($id)
     {
     
-        $tipsters = Tipster::findOrFail($id); 
-        return $tipsters;
+        $tipsters = Tipster::findOrFail($id)->toJson(JSON_PRETTY_PRINT); 
+        return response($tipsters);
     }
 
     /**

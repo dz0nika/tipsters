@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
  */
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/tipsters', [App\Http\Controllers\Api\TipsterController::class, 'index']);
-Route::get('/tips/{tipster:tipster_id}', [App\Http\Controllers\Api\TipController::class, 'show']);
-Route::get('/stats/{tipster:tipster_id}', [App\Http\Controllers\Api\TipController::class, 'showStats']);
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('tipsters', [App\Http\Controllers\Api\TipsterController::class, 'index']);
+Route::get('tips/{tipster:tipster_id}', [App\Http\Controllers\Api\TipController::class, 'show']);
+Route::get('stats/{tipster:tipster_id}', [App\Http\Controllers\Api\TipController::class, 'showStats']);
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

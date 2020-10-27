@@ -20,8 +20,8 @@ class TipController extends Controller
      */
     public function index()
     {
-        $tips = Tip::all(); 
-        return $tips;
+        $tips = Tip::get()->toJson(JSON_PRETTY_PRINT); 
+        return response($tips);
     }
 
     /**
@@ -52,15 +52,27 @@ class TipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($tipster_id)
-    {
-        $tips = Tip::where('tipster_id', $tipster_id)->firstOrFail();  
-        return $tips;
+    {   
+        if (Tip::where('tipster_id', $tipster_id)->exists()) {
+        $tips = Tip::where('tipster_id', $tipster_id)->get()->toJson(JSON_PRETTY_PRINT);  
+        return response($tips);
+        } else {
+            return response()->json([
+                "messege" => "Tip Not Found"
+            ], 404)
+        }
     }
 
     public function showStats($tipster_id)
     {
-        $tips = Tip::where('tipster_id', $tipster_id)->firstOrFail();  
-        return $tips;
+        if (Tip::where('tipster_id', $tipster_id)->exists()) {
+        $tips = Tip::where('tipster_id', $tipster_id)->get()->toJson(JSON_PRETTY_PRINT);  
+        return response($tips);
+        } else {
+            return response()->json([
+                "messege" => "Tip Not Found"
+            ], 404)
+        }
     }
 
     /**
