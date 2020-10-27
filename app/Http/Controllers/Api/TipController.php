@@ -11,7 +11,7 @@ class TipController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -53,25 +53,33 @@ class TipController extends Controller
      */
     public function show($tipster_id)
     {   
-        if (Tip::where('tipster_id', $tipster_id)->exists()) {
+        if (Tip::where('tipster_id', $tipster_id)->exists()) 
+        {
+
         $tips = Tip::where('tipster_id', $tipster_id)->get()->toJson(JSON_PRETTY_PRINT);  
         return response($tips);
+
         } else {
+
             return response()->json([
                 "messege" => "Tip Not Found"
-            ], 404)
+            ], 404);
         }
     }
 
     public function showStats($tipster_id)
     {
-        if (Tip::where('tipster_id', $tipster_id)->exists()) {
+        if (Tip::where('tipster_id', $tipster_id)->exists()) 
+        {
+
         $tips = Tip::where('tipster_id', $tipster_id)->get()->toJson(JSON_PRETTY_PRINT);  
         return response($tips);
+
         } else {
+            
             return response()->json([
                 "messege" => "Tip Not Found"
-            ], 404)
+            ], 404);
         }
     }
 
