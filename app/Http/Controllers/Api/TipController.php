@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Tip;
+use App\Models\Tipster;
 
 class TipController extends Controller
 {

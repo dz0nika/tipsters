@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Tipster;
+use App\Models\Tip;
 
 class TipsterController extends Controller
 {
@@ -20,8 +21,8 @@ class TipsterController extends Controller
      */
     public function index()
     {
-        $tips = Tip::get()->toJson(JSON_PRETTY_PRINT); 
-        return response($tips);
+        $tipsters = Tipster::get()->toJson(JSON_PRETTY_PRINT); 
+        return response($tipsters);
         // return view('admin.tipsters.index', compact('tipsters'));
     }
 
@@ -54,7 +55,6 @@ class TipsterController extends Controller
      */
     public function show($id)
     {
-    
         $tipsters = Tipster::findOrFail($id)->toJson(JSON_PRETTY_PRINT); 
         return response($tipsters);
     }
